@@ -2,7 +2,6 @@ package com.example.mathieu.drawapp;
 
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         drawingSpace = (DrawingView) findViewById(R.id.drawingSpace);
 
