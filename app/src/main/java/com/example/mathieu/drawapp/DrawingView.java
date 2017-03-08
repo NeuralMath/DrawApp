@@ -3,9 +3,11 @@ package com.example.mathieu.drawapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -21,7 +23,8 @@ import java.util.UUID;
 
 
 /**
- * Created by Mathieu on 2017-02-22.
+ * Author: Created by Mathieu on 2017-02-22.
+ * This is a view that allow the user to draw on the screen and that save a png of the drawing
  */
 
 public class DrawingView extends View {
@@ -41,9 +44,9 @@ public class DrawingView extends View {
 
 
 
-    public DrawingView(Context context) {
-        super(context);
-    }
+    public DrawingView(Context c) {
+        super(c);
+       }
 
     public DrawingView(Context c, AttributeSet attrs) {
         super(c, attrs);
@@ -58,6 +61,8 @@ public class DrawingView extends View {
         setWillNotDraw(false);
 
         saveHandler = new Handler();
+
+        setBackgroundResource(R.drawable.colored_border);
     }
 
     @Override
@@ -92,21 +97,30 @@ public class DrawingView extends View {
                 return false;
         }
         invalidate();
-        saveHandler.removeCallbacks(run);
-        saveHandler.postDelayed(run, 2000);
+
+        //Creation of a saving timer that save only at the end of the drawing
+        saveHandler.removeCallbacks(run); //remove the saving timer
+        saveHandler.postDelayed(run, 2000); //create a new saving timer
+
         return true;
     }
 
+    /**
+     * Clear the canvas and stop the saving timer
+     */
     public void clear(){
         drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
         invalidate();
         saveHandler.removeCallbacks(run);
     }
 
+    /**
+     * Save a png of the drawing view in a NeuralMath Directory
+     */
     public  void saveCharacter(){
         setDrawingCacheEnabled(true);
         String path = Environment.getExternalStorageDirectory().getPath() + "/NeuralMath/";
-        File f = new File(path + UUID.randomUUID().toString());
+        File f = new File(path + UUID.randomUUID().toString() + ".png");
         try {
             FileOutputStream out = new FileOutputStream(f);
             getDrawingCache().compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -117,7 +131,9 @@ public class DrawingView extends View {
         destroyDrawingCache();
     }
 
-
+    /**
+     * The runnable that calls saveCharacter and clear functions after a set delay
+     */
     private Runnable run = new Runnable() {
         @Override
         public void run() {

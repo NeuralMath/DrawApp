@@ -11,6 +11,13 @@
     tools:context="com.example.mathieu.drawapp.MainActivity"
     android:orientation="horizontal">
 
+    <com.example.mathieu.drawapp.DrawingPage
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.example.mathieu.drawapp.DrawingPage>
+
+    <!--
     <com.example.mathieu.drawapp.DrawingView
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -30,5 +37,5 @@
             android:onClick="clearDrawingSpace"/>
 
             </LinearLayout>
-
+    -->
 </LinearLayout>
