@@ -5,13 +5,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 
 
 public class MainActivity extends AppCompatActivity {
 
-    DrawingView drawingSpace;
     DrawingPage drawPage;
 
     @Override
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //drawingSpace = (DrawingView) findViewById(R.id.drawingSpace);
+        drawPage = (DrawingPage) findViewById(R.id.drawPage);
 
         //preferences requesting if needed
         if (ContextCompat.checkSelfPermission(this,
@@ -30,9 +28,4 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_NO_LOCALIZED_COLLATORS );
         }
     }
-
-    public void clearDrawingSpace(View view) {
-        drawingSpace.clear();
-        }
-
 }

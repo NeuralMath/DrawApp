@@ -3,11 +3,8 @@ package com.example.mathieu.drawapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.DrawableRes;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -25,6 +22,9 @@ import java.util.UUID;
 /**
  * Author: Created by Mathieu on 2017-02-22.
  * This is a view that allow the user to draw on the screen and that save a png of the drawing
+ *
+ * Code based on a tutorial by Sue Smith
+ * link: https://code.tutsplus.com/tutorials/android-sdk-create-a-drawing-app-essential-functionality--mobile-19328
  */
 
 public class DrawingView extends View {
